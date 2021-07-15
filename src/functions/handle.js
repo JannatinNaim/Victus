@@ -45,7 +45,7 @@ const handleCommands = async (discordClient) => {
     }
 
     const hasRoles = (role) => member.roles.cache.has(role)
-    if (!global && !requiredRoles.every(hasRoles)) {
+    if (!global && (requiredRoles?.length && !requiredRoles.every(hasRoles))) {
       message.reply("You don't have the roles to run that command.")
       return
     }
