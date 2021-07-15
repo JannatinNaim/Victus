@@ -32,6 +32,9 @@ const registerGlobalCommands = async (discordClient, commands) => {
       requiredPermissions = [requiredPermissions]
     }
 
+    const commandID = Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+
     aliases = [name, ...aliases]
 
     aliases.forEach(async (alias) => {
@@ -42,7 +45,8 @@ const registerGlobalCommands = async (discordClient, commands) => {
         minArgs,
         maxArgs,
         expectedArgs,
-        requiredPermissions
+        requiredPermissions,
+        commandID
       })
     })
 
@@ -79,6 +83,9 @@ const registerGuildCommands = async (discordClient, commands) => {
         requiredPermissions = [requiredPermissions]
       }
 
+      const commandID = Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+
       aliases = [name, ...aliases]
 
       aliases.forEach(async (alias) => {
@@ -89,7 +96,8 @@ const registerGuildCommands = async (discordClient, commands) => {
           minArgs,
           maxArgs,
           expectedArgs,
-          requiredPermissions
+          requiredPermissions,
+          commandID
         })
       })
 
