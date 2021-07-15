@@ -25,6 +25,8 @@ module.exports = (directory) => {
         const object = require(path.join(__dirname, _directory, file))
 
         objectsArray.push(object)
+
+        delete require.cache[require.resolve(path.join(__dirname, _directory, file))]
       }
     })
   })(directory)
