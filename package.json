@@ -1,0 +1,34 @@
+{
+  "name": "victus",
+  "version": "0.0.1",
+  "description": "One BOT can make a difference.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JannatinNaim/Victus.git"
+  },
+  "keywords": [
+    "victus",
+    "discord.js"
+  ],
+  "author": "Jannatin Naim",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/JannatinNaim/Victus/issues"
+  },
+  "homepage": "https://github.com/JannatinNaim/Victus#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  }
+}
