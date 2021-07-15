@@ -17,11 +17,33 @@ const registerGlobalCommands = async (discordClient, commands) => {
       discordClient.settings.commandPrefix = globalCommandPrefix
     }
 
-    let { name, aliases = [] } = command
+    let {
+      name,
+      run,
+      aliases = [],
+      description = '',
+      minArgs = 0,
+      maxArgs = null,
+      expectedArgs = '',
+      requiredPermissions = []
+    } = command
+
+    if (typeof requiredPermissions === 'string') {
+      requiredPermissions = [requiredPermissions]
+    }
+
     aliases = [name, ...aliases]
 
     aliases.forEach(async (alias) => {
-      discordClient.commands.set(alias, command)
+      discordClient.commands.set(alias, {
+        name,
+        run,
+        description,
+        minArgs,
+        maxArgs,
+        expectedArgs,
+        requiredPermissions
+      })
     })
 
     console.log(`Registered Global Command : ${name}`)
@@ -40,11 +62,35 @@ const registerGuildCommands = async (discordClient, commands) => {
     }
 
     commands.forEach(async (command) => {
-      let { name, aliases = [] } = command
+      if (command.global) return
+
+      let {
+        name,
+        run,
+        aliases = [],
+        description = '',
+        minArgs = 0,
+        maxArgs = null,
+        expectedArgs = '',
+        requiredPermissions = []
+      } = command
+
+      if (typeof requiredPermissions === 'string') {
+        requiredPermissions = [requiredPermissions]
+      }
+
       aliases = [name, ...aliases]
 
       aliases.forEach(async (alias) => {
-        guild.commands.set(alias, command)
+        guild.commands.set(alias, {
+          name,
+          run,
+          description,
+          minArgs,
+          maxArgs,
+          expectedArgs,
+          requiredPermissions
+        })
       })
 
       console.log(`Registered Guild Command : ${name} / ${guild.name}`)

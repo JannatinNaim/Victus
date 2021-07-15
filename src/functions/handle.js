@@ -10,7 +10,7 @@ const handleCommands = async (discordClient) => {
   discordClient.on('message', async (message) => {
     if (message.author.id === discordClient.user.id) return
 
-    const { author, content, guild } = message
+    const { author, member, content, guild } = message
 
     const _guild = discordClient.guilds.cache.get(guild.id)
     const { commandPrefix } = _guild.settings
@@ -27,14 +27,28 @@ const handleCommands = async (discordClient) => {
     if (!command) return
 
     const {
+      global,
       name,
       run,
       minArgs,
       maxArgs,
-      expectedArgs
+      expectedArgs,
+      requiredPermissions,
+      requiredRoles
     } = command
 
     console.log(`${author} ran command : ${name} in  ${guild.name}.`)
+
+    if (!member.hasPermission(requiredPermissions)) {
+      message.reply("You don't have the permissions to run that command.")
+      return
+    }
+
+    const hasRoles = (role) => member.roles.cache.has(role)
+    if (!global && !requiredRoles.every(hasRoles)) {
+      message.reply("You don't have the roles to run that command.")
+      return
+    }
 
     args.shift()
     if (args.length < minArgs || (maxArgs !== null && args.length > maxArgs)) {
