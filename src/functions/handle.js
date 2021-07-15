@@ -59,7 +59,13 @@ const handleCommands = async (discordClient) => {
       return
     }
 
-    await run(message, args, discordClient)
+    try {
+      await run(message, args, discordClient)
+    } catch (error) {
+      message.reply(error)
+
+      console.error(error)
+    }
   })
 }
 
