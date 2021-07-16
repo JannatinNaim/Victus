@@ -18,6 +18,12 @@ module.exports = {
       const command = _guild.commands?.get(userCommand)
       command.disabled = false
 
+      const { commandID } = command
+
+      _guild.commands.forEach((_command) => {
+        if (commandID === _command.commandID) _command.disabled = false
+      })
+
       message.reply(`Enabled Command : ${command.name}`)
     }
 
@@ -25,10 +31,17 @@ module.exports = {
       const command = discordClient.commands?.get(userCommand)
       command.disabled = false
 
+      const { commandID } = command
+
+      discordClient.commands.forEach((_command) => {
+        if (commandID === _command.commandID) _command.disabled = false
+      })
+
       message.reply(`Enabled Command : ${command.name}`)
     }
   },
   minArgs: 2,
   expectedArgs: '<command_name> <global/guild>',
-  requiredPermissions: 'ADMINISTRATOR'
+  requiredPermissions: 'ADMINISTRATOR',
+  global: true
 }

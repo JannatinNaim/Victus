@@ -69,5 +69,6 @@ module.exports = {
   },
   minArgs: 1,
   expectedArgs: '<command_name>',
-  requiredPermissions: 'ADMINISTRATOR'
+  requiredPermissions: 'ADMINISTRATOR',
+  global: true
 }
