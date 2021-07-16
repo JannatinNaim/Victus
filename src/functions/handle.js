@@ -25,7 +25,7 @@ const handleCommands = async (discordClient) => {
     command = _guild.commands?.get(userCommand)
     if (!command) { command = discordClient.commands?.get(userCommand) }
     if (!command) return
-    if (command.disabled) return message.reply('Command Disabled!')
+    if (command.disabled) return
 
     const {
       global,

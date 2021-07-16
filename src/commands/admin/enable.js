@@ -11,7 +11,7 @@ module.exports = {
   */
   run: async (message, args, discordClient) => {
     const userCommand = args[0]
-    const commandScope = args[1]
+    const commandScope = args[1] || 'guild'
 
     if (commandScope === 'guild') {
       const _guild = discordClient.guilds.cache.get(message.guild.id)
@@ -42,7 +42,8 @@ module.exports = {
       message.reply(`Enabled Command : ${command.name}`)
     }
   },
-  minArgs: 2,
+  minArgs: 1,
+  maxArgs: 2,
   expectedArgs: '<command_name> <global/guild>',
   requiredPermissions: 'ADMINISTRATOR',
   global: true
