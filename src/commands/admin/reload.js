@@ -48,21 +48,19 @@ module.exports = {
         })
       }
 
-      if (!command.global) {
-        aliases.forEach((alias) => {
-          discordClient.guilds.cache.forEach((guild) => {
-            guild.commands.set(alias, {
-              name,
-              run,
-              description,
-              minArgs,
-              maxArgs,
-              expectedArgs,
-              requiredPermissions
-            })
+      aliases.forEach((alias) => {
+        discordClient.guilds.cache.forEach((guild) => {
+          guild.commands.set(alias, {
+            name,
+            run,
+            description,
+            minArgs,
+            maxArgs,
+            expectedArgs,
+            requiredPermissions
           })
         })
-      }
+      })
 
       message.reply(`Reloaded Command : ${name}`)
     })
