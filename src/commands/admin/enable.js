@@ -16,6 +16,7 @@ module.exports = {
     if (commandScope === 'guild') {
       const _guild = discordClient.guilds.cache.get(message.guild.id)
       const command = _guild.commands?.get(userCommand)
+      if (!command) return
       command.disabled = false
 
       const { commandID } = command
@@ -29,6 +30,7 @@ module.exports = {
 
     if (commandScope === 'global') {
       const command = discordClient.commands?.get(userCommand)
+      if (!command) return
       command.disabled = false
 
       const { commandID } = command
