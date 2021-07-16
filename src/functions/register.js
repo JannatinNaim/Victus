@@ -66,8 +66,6 @@ const registerGuildCommands = async (discordClient, commands) => {
     }
 
     commands.forEach(async (command) => {
-      if (command.global) return
-
       let {
         name,
         run,
